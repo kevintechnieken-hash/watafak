@@ -45,6 +45,27 @@ public class ArenaManager {
 
             List<Location> sectionA = new ArrayList<>();
             List<Location> sectionB = new ArrayList<>();
+            // Parse dynamic sections for arena shifts
+            try {
+                java.util.List<java.util.Map<String, Object>> aList = (java.util.List<java.util.Map<String, Object>>) sec.getList("sections.A");
+                if (aList != null) {
+                    for (java.util.Map<String, Object> m : aList) {
+                        double x = ((Number) m.getOrDefault("x", 0)).doubleValue();
+                        double y = ((Number) m.getOrDefault("y", 64)).doubleValue();
+                        double z = ((Number) m.getOrDefault("z", 0)).doubleValue();
+                        sectionA.add(new Location(world, x, y, z));
+                    }
+                }
+                java.util.List<java.util.Map<String, Object>> bList = (java.util.List<java.util.Map<String, Object>>) sec.getList("sections.B");
+                if (bList != null) {
+                    for (java.util.Map<String, Object> m : bList) {
+                        double x = ((Number) m.getOrDefault("x", 0)).doubleValue();
+                        double y = ((Number) m.getOrDefault("y", 64)).doubleValue();
+                        double z = ((Number) m.getOrDefault("z", 0)).doubleValue();
+                        sectionB.add(new Location(world, x, y, z));
+                    }
+                }
+            } catch (Exception ignored) {}
             idToArena.put(id, new Arena(id, display, worldName, spawn, mspawn, sectionA, sectionB));
         }
         // Select default current arena if any

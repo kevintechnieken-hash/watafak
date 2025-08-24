@@ -102,5 +102,24 @@ public class StatsManager {
         }
         return result;
     }
+
+    public java.util.List<Record> getLeaderboardPage(String column, int page, int pageSize) {
+        java.util.List<Record> result = new java.util.ArrayList<>();
+        int offset = (page - 1) * pageSize;
+        String sql = "SELECT name, " + column + " FROM ht_players ORDER BY " + column + " DESC LIMIT ? OFFSET ?";
+        try (Connection c = databaseManager.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setInt(1, pageSize);
+            ps.setInt(2, offset);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    result.add(new Record(rs.getString(1), rs.getInt(2)));
+                }
+            }
+        } catch (SQLException e) {
+            plugin.getLogger().warning("getLeaderboardPage failed: " + e.getMessage());
+        }
+        return result;
+    }
 }
 

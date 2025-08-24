@@ -47,6 +47,32 @@ public class MenuListener implements Listener {
 
         if (title.contains("Leaderboards")) {
             event.setCancelled(true);
+            if (current == null) return;
+            // Parse column and page from title
+            String[] parts = title.split("#");
+            String column = "wins";
+            int page = 1;
+            if (parts.length >= 2) {
+                String left = parts[0];
+                if (left.contains(":")) column = ColorUtil.stripHex(left.substring(left.indexOf(":") + 1)).trim();
+                try { page = Integer.parseInt(parts[1].trim()); } catch (Exception ignored) {}
+            }
+            int slot = event.getRawSlot();
+            if (slot == 45) {
+                page = Math.max(1, page - 1);
+                plugin.getGuiManager().openLeaderboard(player, column, page);
+            } else if (slot == 53) {
+                page = page + 1;
+                plugin.getGuiManager().openLeaderboard(player, column, page);
+            } else if (slot == 49) {
+                // cycle filters
+                column = switch (column.toLowerCase()) {
+                    case "wins" -> "kills";
+                    case "kills" -> "deaths";
+                    default -> "wins";
+                };
+                plugin.getGuiManager().openLeaderboard(player, column, 1);
+            }
         }
 
         if (title.contains("Arenas")) {

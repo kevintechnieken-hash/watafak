@@ -18,11 +18,16 @@ public class GuiManager {
     public GuiManager(HorrorTikkertjePlugin plugin) { this.plugin = plugin; }
 
     public void openLeaderboard(Player player, String column) {
-        List<StatsManager.Record> records = plugin.getStatsManager().getLeaderboardRecords(column, 27);
-        Inventory inv = Bukkit.createInventory(player, 27, ColorUtil.colorize("#FFAA00Leaderboards: " + column));
-        int i = 0; int rank = 1;
+        openLeaderboard(player, column, 1);
+    }
+
+    public void openLeaderboard(Player player, String column, int page) {
+        int pageSize = 45; // 5 rows for entries, last row for controls
+        List<StatsManager.Record> records = plugin.getStatsManager().getLeaderboardPage(column, page, pageSize);
+        Inventory inv = Bukkit.createInventory(player, 54, ColorUtil.colorize("#FFAA00Leaderboards: " + column + " #" + page));
+        int i = 0; int rank = (page - 1) * pageSize + 1;
         for (StatsManager.Record r : records) {
-            if (i >= 27) break;
+            if (i >= pageSize) break;
             ItemStack it = new ItemBuilder(Material.PAPER)
                     .name("#FFFFFF#" + rank + " " + r.name())
                     .lore("&7Score: &f" + r.value())
@@ -30,6 +35,10 @@ public class GuiManager {
             inv.setItem(i++, it);
             rank++;
         }
+        // Controls: previous/next and filter buttons (wins/kills/deaths)
+        inv.setItem(45, new ItemBuilder(Material.ARROW).name("#AAAAAAPrevious").build());
+        inv.setItem(49, new ItemBuilder(Material.COMPASS).name("#FFFFFFFilter: " + column).lore("&7Click to cycle").build());
+        inv.setItem(53, new ItemBuilder(Material.ARROW).name("#AAAAAANext").build());
         player.openInventory(inv);
     }
 

@@ -26,14 +26,11 @@ public class ArenaShiftManager {
             if (plugin.getGameManager().getState() != GameManager.GameState.RUNNING) return;
             Arena arena = plugin.getArenaManager().getCurrentArena();
             if (arena == null || arena.getWorld() == null) return;
-            // Simple effect: toggle a small 3x3 floor at spawn between AIR and COBBLESTONE
-            var base = arena.getPlayerSpawn().clone().add(-1, -1, -1);
-            Material mat = Math.random() < 0.5 ? Material.AIR : Material.COBBLESTONE;
-            for (int x = 0; x < 3; x++) for (int z = 0; z < 3; z++) {
-                Block b = base.clone().add(x, 0, z).getBlock();
-                b.setType(mat, false);
-                toggled.add(b);
-            }
+            // Use configured sections A and B, toggle them to random materials
+            Material matA = Math.random() < 0.5 ? Material.AIR : Material.COBBLESTONE;
+            Material matB = Math.random() < 0.5 ? Material.AIR : Material.OAK_PLANKS;
+            arena.getShiftSectionA().forEach(loc -> loc.getBlock().setType(matA, false));
+            arena.getShiftSectionB().forEach(loc -> loc.getBlock().setType(matB, false));
         }, 200L, 200L);
     }
 
