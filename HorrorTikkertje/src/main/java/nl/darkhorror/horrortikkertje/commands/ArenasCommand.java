@@ -14,6 +14,7 @@ public class ArenasCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
+            if (sender instanceof Player p) { plugin.getGuiManager().openArenas(p); return true; }
             sender.sendMessage("/arenas list | set <id> | reload");
             return true;
         }

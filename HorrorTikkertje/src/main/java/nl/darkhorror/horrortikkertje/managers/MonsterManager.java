@@ -22,6 +22,7 @@ public class MonsterManager {
     private BukkitTask chaseTask;
     private double speedOverride = 0.35;
     private double maxHealthOverride = 60.0;
+    private BukkitTask evolutionTask;
 
     public MonsterManager(HorrorTikkertjePlugin plugin) {
         this.plugin = plugin;
@@ -58,6 +59,13 @@ public class MonsterManager {
                 activeMonster.setTarget(nearest);
             }
         }, 20L, 20L);
+
+        // Evolution every 30 seconds
+        if (evolutionTask != null) evolutionTask.cancel();
+        evolutionTask = Bukkit.getScheduler().runTaskTimer(plugin, () -> {
+            setSpeed(speedOverride + 0.02);
+            setMaxHealth(maxHealthOverride + 2.0);
+        }, 20L * 30, 20L * 30);
     }
 
     private void configureMonster(Mob mob, boolean preGame) {
@@ -83,6 +91,7 @@ public class MonsterManager {
             chaseTask.cancel();
             chaseTask = null;
         }
+        if (evolutionTask != null) { evolutionTask.cancel(); evolutionTask = null; }
     }
 
     public void setSpeed(double speed) {

@@ -13,11 +13,10 @@ public class LeaderboardCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         String column = args.length > 0 ? args[0] : "wins";
-        var lines = plugin.getStatsManager().getLeaderboard(column, 10);
-        if (sender instanceof Player) {
-            sender.sendMessage("Top 10 (" + column + "):");
-            for (String line : lines) sender.sendMessage(line);
+        if (sender instanceof Player p) {
+            plugin.getGuiManager().openLeaderboard(p, column);
         } else {
+            var lines = plugin.getStatsManager().getLeaderboard(column, 10);
             for (String line : lines) sender.sendMessage(line);
         }
         return true;

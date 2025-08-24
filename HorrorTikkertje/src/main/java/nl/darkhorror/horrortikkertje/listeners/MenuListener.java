@@ -44,6 +44,23 @@ public class MenuListener implements Listener {
                 plugin.getVoteManager().toggleVote(player, VoteManager.Option.CURSED_ARENA);
             }
         }
+
+        if (title.contains("Leaderboards")) {
+            event.setCancelled(true);
+        }
+
+        if (title.contains("Arenas")) {
+            event.setCancelled(true);
+            if (current == null || current.getType() != Material.MAP) return;
+            String id = current.hasItemMeta() && current.getItemMeta().hasDisplayName() ? current.getItemMeta().getDisplayName() : null;
+            if (id == null) return;
+            var arena = plugin.getArenaManager().getArena(ColorUtil.stripHex(id));
+            if (arena == null) { player.sendMessage(ColorUtil.colorize("#FF5555Arena niet gevonden")); return; }
+            if (!player.hasPermission("horrortikkertje.admin")) { player.sendMessage("Geen permissie."); return; }
+            plugin.getArenaManager().setCurrentArena(arena);
+            player.sendMessage(ColorUtil.colorize("#55FF55Arena gezet: &f" + arena.getId()));
+            player.closeInventory();
+        }
     }
 }
 

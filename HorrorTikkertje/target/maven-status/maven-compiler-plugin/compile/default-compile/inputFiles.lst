@@ -18,6 +18,7 @@
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/api/HorrorTikkertjeAPI.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/MonsterCommand.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/ConfigManager.java
+/workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/GuiManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/AdminCommand.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/model/Kit.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/listeners/GameProtectionListener.java
@@ -28,6 +29,7 @@
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/listeners/PlayerConnectionListener.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/KitManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/util/ColorUtil.java
+/workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/ArenaShiftManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/MessageManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/ArenaManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/ui/TitleActionbarBossbar.java

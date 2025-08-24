@@ -37,6 +37,8 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
     private PowerUpManager powerUpManager;
     private HorrorEventManager horrorEventManager;
     private TitleActionbarBossbar tabUi;
+    private GuiManager guiManager;
+    private ArenaShiftManager arenaShiftManager;
 
     private HorrorTikkertjeAPI api;
 
@@ -66,6 +68,8 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
         this.powerUpManager = new PowerUpManager(this);
         this.horrorEventManager = new HorrorEventManager(this);
         this.tabUi = new TitleActionbarBossbar();
+        this.guiManager = new GuiManager(this);
+        this.arenaShiftManager = new ArenaShiftManager(this);
 
         // Expose API
         this.api = new HorrorTikkertjeAPI(this);
@@ -89,6 +93,7 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
         this.scoreboardManager.startUpdaterTask();
         this.powerUpManager.startSpawning();
         this.horrorEventManager.start();
+        this.arenaShiftManager.start();
 
         getLogger().info(ColorUtil.stripHex("HorrorTikkertje enabled."));
     }
@@ -103,6 +108,7 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
         }
         if (this.horrorEventManager != null) this.horrorEventManager.stop();
         if (this.powerUpManager != null) this.powerUpManager.stopSpawning();
+        if (this.arenaShiftManager != null) this.arenaShiftManager.stop();
         getLogger().info(ColorUtil.stripHex("HorrorTikkertje disabled."));
     }
 
@@ -141,6 +147,7 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
     public PowerUpManager getPowerUpManager() { return powerUpManager; }
     public HorrorEventManager getHorrorEventManager() { return horrorEventManager; }
     public TitleActionbarBossbar getTabUi() { return tabUi; }
+    public GuiManager getGuiManager() { return guiManager; }
     public HorrorTikkertjeAPI getApi() { return api; }
 }
 
