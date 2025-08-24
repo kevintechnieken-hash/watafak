@@ -56,6 +56,16 @@ public class StatsManager {
         }
     }
 
+    public void resetStats(UUID uuid) {
+        try (Connection c = databaseManager.getConnection();
+             PreparedStatement ps = c.prepareStatement("UPDATE ht_players SET kills=0,deaths=0,wins=0,playtime_seconds=0 WHERE uuid=?")) {
+            ps.setString(1, uuid.toString());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            plugin.getLogger().warning("resetStats failed: " + e.getMessage());
+        }
+    }
+
     public java.util.List<String> getLeaderboard(String column, int limit) {
         java.util.List<String> result = new java.util.ArrayList<>();
         String sql = "SELECT name, " + column + " FROM ht_players ORDER BY " + column + " DESC LIMIT ?";

@@ -58,6 +58,7 @@ public class ScoreboardManager {
         int line = 10;
         line = setLine(obj, line, "State: " + plugin.getGameManager().getState());
         line = setLine(obj, line, "Players: " + plugin.getGameManager().getPlayers().size());
+        line = setLine(obj, line, "Time: " + plugin.getGameManager().getCountdown() + "s");
         line = setLine(obj, line, "Monster: " + (plugin.getVoteManager().isEnabled(VoteManager.Option.MONSTER_ENABLED) ? "ON" : "OFF"));
         setLine(obj, line, "Cursed: " + (plugin.getVoteManager().isEnabled(VoteManager.Option.CURSED_ARENA) ? "ON" : "OFF"));
     }

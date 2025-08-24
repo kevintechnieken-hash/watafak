@@ -20,6 +20,8 @@ public class MonsterManager {
     private final HorrorTikkertjePlugin plugin;
     private Mob activeMonster;
     private BukkitTask chaseTask;
+    private double speedOverride = 0.35;
+    private double maxHealthOverride = 60.0;
 
     public MonsterManager(HorrorTikkertjePlugin plugin) {
         this.plugin = plugin;
@@ -60,11 +62,11 @@ public class MonsterManager {
 
     private void configureMonster(Mob mob, boolean preGame) {
         if (mob.getAttribute(Attribute.MAX_HEALTH) != null) {
-            mob.getAttribute(Attribute.MAX_HEALTH).setBaseValue(60.0);
+            mob.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealthOverride);
         }
-        mob.setHealth(Math.min(60.0, mob.getMaxHealth()));
+        mob.setHealth(Math.min(maxHealthOverride, mob.getMaxHealth()));
         if (mob.getAttribute(Attribute.MOVEMENT_SPEED) != null) {
-            mob.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0.35);
+            mob.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(speedOverride);
         }
         mob.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, Integer.MAX_VALUE, 1, true, false));
         if (preGame) {
@@ -80,6 +82,21 @@ public class MonsterManager {
         if (chaseTask != null) {
             chaseTask.cancel();
             chaseTask = null;
+        }
+    }
+
+    public void setSpeed(double speed) {
+        this.speedOverride = speed;
+        if (activeMonster != null && activeMonster.getAttribute(Attribute.MOVEMENT_SPEED) != null) {
+            activeMonster.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(speed);
+        }
+    }
+
+    public void setMaxHealth(double hp) {
+        this.maxHealthOverride = hp;
+        if (activeMonster != null && activeMonster.getAttribute(Attribute.MAX_HEALTH) != null) {
+            activeMonster.getAttribute(Attribute.MAX_HEALTH).setBaseValue(hp);
+            activeMonster.setHealth(Math.min(hp, activeMonster.getMaxHealth()));
         }
     }
 }
