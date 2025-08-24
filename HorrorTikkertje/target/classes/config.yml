@@ -1,0 +1,25 @@
+# General settings
+max-players: 12
+lobby-world: world
+
+# MySQL credentials
+mysql:
+  host: localhost
+  port: 3306
+  database: horrortikkertje
+  user: root
+  password: ''
+  useSSL: false
+
+# Timers (seconds)
+timers:
+  vote: 30
+  prestart: 15
+  game: 300
+  end: 10
+
+# RGB title formats
+titles:
+  start: "#FF0000&lHorror &fTikkertje &7is starting!"
+  win: "#00FF88&lVictory!"
+

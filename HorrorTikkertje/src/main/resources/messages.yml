@@ -1,0 +1,7 @@
+prefix: "#FF5555&l[Horror]&r "
+join: "{prefix}&fWelkom &7{player}!"
+leave: "{prefix}&7{player} &fheeft de server verlaten."
+start-countdown: "{prefix}&7Game start in &c{seconds}&7s"
+game-start: "{prefix}&aGame gestart!"
+game-end: "{prefix}&cGame afgelopen."
+

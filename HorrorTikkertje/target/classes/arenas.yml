@@ -1,0 +1,14 @@
+arenas:
+  default:
+    display: "#AA0000Cursed Manor"
+    world: world
+    spawn:
+      x: 0
+      y: 64
+      z: 0
+    monster-spawn:
+      x: 5
+      y: 64
+      z: 5
+    data: {}
+

@@ -1,0 +1,17 @@
+kits:
+  runner:
+    display: "#00FF00Runner"
+    icon: FEATHER
+    effects:
+      - SPEED:2
+      - JUMP:1
+    items:
+      - "FEATHER:1"
+  ghost:
+    display: "#AAAAAAGhost"
+    icon: GHAST_TEAR
+    effects:
+      - INVISIBILITY:1
+    items:
+      - "ENDER_PEARL:1"
+
