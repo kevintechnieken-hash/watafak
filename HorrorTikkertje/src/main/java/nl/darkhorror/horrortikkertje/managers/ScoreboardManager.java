@@ -4,6 +4,10 @@ import nl.darkhorror.horrortikkertje.HorrorTikkertjePlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
 
 /**
  * Handles creation and periodic updates of player scoreboards.
@@ -20,7 +24,7 @@ public class ScoreboardManager {
         if (updaterTask != null) return;
         updaterTask = Bukkit.getScheduler().runTaskTimer(plugin, () -> {
             for (Player player : Bukkit.getOnlinePlayers()) {
-                // Placeholder: update scoreboard lines later
+                updateScoreboard(player);
             }
         }, 20L, 40L);
     }
@@ -30,6 +34,38 @@ public class ScoreboardManager {
             updaterTask.cancel();
             updaterTask = null;
         }
+    }
+
+    private void updateScoreboard(Player player) {
+        Scoreboard board = player.getScoreboard();
+        if (board == null || board == Bukkit.getScoreboardManager().getMainScoreboard()) {
+            board = Bukkit.getScoreboardManager().getNewScoreboard();
+            player.setScoreboard(board);
+        }
+
+        Objective obj = board.getObjective("ht");
+        if (obj == null) {
+            obj = board.registerNewObjective("ht", "dummy", "Horror Tikkertje");
+            obj.setDisplaySlot(DisplaySlot.SIDEBAR);
+        }
+        obj.setDisplayName("Horror Tikkertje");
+
+        // Clear existing scores by creating new entries with unique lines
+        for (String entry : board.getEntries()) {
+            board.resetScores(entry);
+        }
+
+        int line = 10;
+        line = setLine(obj, line, "State: " + plugin.getGameManager().getState());
+        line = setLine(obj, line, "Players: " + plugin.getGameManager().getPlayers().size());
+        line = setLine(obj, line, "Monster: " + (plugin.getVoteManager().isEnabled(VoteManager.Option.MONSTER_ENABLED) ? "ON" : "OFF"));
+        setLine(obj, line, "Cursed: " + (plugin.getVoteManager().isEnabled(VoteManager.Option.CURSED_ARENA) ? "ON" : "OFF"));
+    }
+
+    private int setLine(Objective obj, int line, String text) {
+        Score score = obj.getScore(text);
+        score.setScore(line);
+        return line - 1;
     }
 }
 

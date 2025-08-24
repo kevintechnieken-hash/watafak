@@ -21,6 +21,10 @@ public class PlayerConnectionListener implements Listener {
         plugin.getStatsManager().ensurePlayer(event.getPlayer().getUniqueId(), event.getPlayer().getName());
         plugin.getGameManager().addPlayer(event.getPlayer());
         event.setJoinMessage(null);
+        // Give voting and kit items in lobby
+        event.getPlayer().getInventory().clear();
+        event.getPlayer().getInventory().setItem(0, new org.bukkit.inventory.ItemStack(org.bukkit.Material.BOOK));
+        event.getPlayer().getInventory().setItem(1, new org.bukkit.inventory.ItemStack(org.bukkit.Material.CHEST));
     }
 
     @EventHandler

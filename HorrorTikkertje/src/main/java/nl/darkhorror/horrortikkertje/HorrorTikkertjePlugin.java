@@ -4,6 +4,7 @@ import nl.darkhorror.horrortikkertje.api.HorrorTikkertjeAPI;
 import nl.darkhorror.horrortikkertje.commands.*;
 import nl.darkhorror.horrortikkertje.database.DatabaseManager;
 import nl.darkhorror.horrortikkertje.listeners.GameProtectionListener;
+import nl.darkhorror.horrortikkertje.listeners.MenuListener;
 import nl.darkhorror.horrortikkertje.listeners.PlayerConnectionListener;
 import nl.darkhorror.horrortikkertje.managers.*;
 import nl.darkhorror.horrortikkertje.util.ColorUtil;
@@ -64,6 +65,7 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
         // Register events
         Bukkit.getPluginManager().registerEvents(new PlayerConnectionListener(this), this);
         Bukkit.getPluginManager().registerEvents(new GameProtectionListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new MenuListener(this), this);
 
         // Register commands
         registerCommands();
