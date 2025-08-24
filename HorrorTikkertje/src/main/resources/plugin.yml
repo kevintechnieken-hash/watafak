@@ -1,0 +1,59 @@
+name: HorrorTikkertje
+main: nl.darkhorror.horrortikkertje.HorrorTikkertjePlugin
+version: 1.0.0
+api-version: '1.21'
+author: DarkHorror
+description: Ultra Complete Horror Tikkertje Minigame for Spigot 1.21.4
+website: https://example.com
+
+commands:
+  startgame:
+    description: Start the game
+    permission: horrortikkertje.admin.start
+  endgame:
+    description: End the game
+    permission: horrortikkertje.admin.end
+  kit:
+    description: Select a kit
+  stats:
+    description: Show player stats
+  leaderboard:
+    description: Show leaderboards
+  arenas:
+    description: Manage or list arenas
+  vote:
+    description: Open voting menu
+  admin:
+    description: Admin root command
+    permission: horrortikkertje.admin
+  broadcast:
+    description: Broadcast a message
+    permission: horrortikkertje.admin.broadcast
+  gameinfo:
+    description: Show game info
+  monster:
+    description: Monster controls
+    permission: horrortikkertje.admin.monster
+  spawnnpc:
+    description: Spawn NPCs
+    permission: horrortikkertje.admin.npc
+  gameconfig:
+    description: Reload configs
+    permission: horrortikkertje.admin.reload
+
+permissions:
+  horrortikkertje.admin:
+    default: op
+  horrortikkertje.admin.start:
+    default: op
+  horrortikkertje.admin.end:
+    default: op
+  horrortikkertje.admin.broadcast:
+    default: op
+  horrortikkertje.admin.monster:
+    default: op
+  horrortikkertje.admin.npc:
+    default: op
+  horrortikkertje.admin.reload:
+    default: op
+
