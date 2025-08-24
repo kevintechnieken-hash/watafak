@@ -48,29 +48,31 @@ public class ScoreboardManager {
             obj = board.registerNewObjective("ht", "dummy", "Horror Tikkertje");
             obj.setDisplaySlot(DisplaySlot.SIDEBAR);
         }
-        obj.setDisplayName("§c§lHAUNT & HUNT");
+        obj.setDisplayName("§x§f§f§3§3§5§8§lHAUNT & HUNT");
 
         // Clear existing scores by creating new entries with unique lines
         for (String entry : board.getEntries()) {
             board.resetScores(entry);
         }
 
-        String ip = plugin.getConfig().getString("server.ip", "play.example.net");
+        String ip = plugin.getConfig().getString("server.ip", "mc.azura.gg");
         String arenaName = plugin.getArenaManager().getCurrentArena() != null ? plugin.getArenaManager().getCurrentArena().getDisplayName() : "N/A";
-        String region = plugin.getRegionManager().toDisplay(plugin.getRegionManager().getCurrentRegion());
+        java.time.LocalDate now = java.time.LocalDate.now();
+        String date = now.getYear() + "/" + String.format("%02d", now.getMonthValue()) + "/" + String.format("%02d", now.getDayOfMonth());
+
+        int max = plugin.getConfig().getInt("max-players", 12);
+        int waiting = plugin.getGameManager().getPlayers().size();
 
         int line = 14;
-        line = setLine(obj, line, "§8────────────");
-        line = setLine(obj, line, "§7State: §f" + plugin.getGameManager().getState());
-        line = setLine(obj, line, "§7Players: §f" + plugin.getGameManager().getPlayers().size());
-        line = setLine(obj, line, "§7Arena: §f" + arenaName);
-        line = setLine(obj, line, "§7Region: §f" + region);
-        line = setLine(obj, line, "§7Time: §f" + plugin.getGameManager().getCountdown() + "s");
-        line = setLine(obj, line, "§7Monster: " + (plugin.getVoteManager().isEnabled(VoteManager.Option.MONSTER_ENABLED) ? "§aON" : "§cOFF"));
-        line = setLine(obj, line, "§7Cursed: " + (plugin.getVoteManager().isEnabled(VoteManager.Option.CURSED_ARENA) ? "§aON" : "§cOFF"));
+        line = setLine(obj, line, "§7" + date);
         line = setLine(obj, line, " ");
-        line = setLine(obj, line, "§7IP: §f" + ip);
-        setLine(obj, line, "§8────────────");
+        line = setLine(obj, line, "§fPlayers Waiting:");
+        line = setLine(obj, line, "§a" + waiting + "/" + max);
+        line = setLine(obj, line, " ");
+        line = setLine(obj, line, "§fMap:");
+        line = setLine(obj, line, "§b" + arenaName);
+        line = setLine(obj, line, " ");
+        setLine(obj, line, "§x§a§6§f§c§f§f" + ip);
     }
 
     private int setLine(Objective obj, int line, String text) {

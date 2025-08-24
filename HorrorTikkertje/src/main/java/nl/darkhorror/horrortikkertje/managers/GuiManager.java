@@ -7,8 +7,10 @@ import nl.darkhorror.horrortikkertje.util.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.List;
 
@@ -31,11 +33,17 @@ public class GuiManager {
         int i = 0; int rank = (page - 1) * pageSize + 1;
         for (StatsManager.Record r : records) {
             if (i >= pageSize) break;
-            ItemStack it = new ItemBuilder(Material.PAPER)
-                    .name("#FFFFFF#" + rank + " " + r.name())
-                    .lore("&7Score: &f" + r.value())
-                    .build();
-            inv.setItem(i++, it);
+            ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1);
+            SkullMeta meta = (SkullMeta) head.getItemMeta();
+            OfflinePlayer op = Bukkit.getOfflinePlayer(r.name());
+            meta.setOwningPlayer(op);
+            meta.setDisplayName(ColorUtil.colorize("#FFFFFF#" + rank + " " + r.name()));
+            java.util.List<String> lore = new java.util.ArrayList<>();
+            lore.add(ColorUtil.colorize("&7Score: &f" + r.value()));
+            lore.add(ColorUtil.colorize("&7Click to view stats"));
+            meta.setLore(lore);
+            head.setItemMeta(meta);
+            inv.setItem(i++, head);
             rank++;
         }
         // Controls: previous/next and filter buttons (wins/kills/deaths)

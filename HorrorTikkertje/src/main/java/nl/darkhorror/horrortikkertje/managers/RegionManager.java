@@ -29,9 +29,9 @@ public class RegionManager {
     public void openRegionMenu(Player player) {
         Inventory inv = Bukkit.createInventory(player, 27, ColorUtil.colorize("#55FF55Region Selector"));
         inv.setItem(10, new ItemBuilder(Material.ENDER_PEARL).name("#00FFFFAsia").lore("&7Lower latency in Asia").build());
-        inv.setItem(12, new ItemBuilder(Material.LAPIS_LAZULI).name("#00AAFFEurope").lore("&7Lower latency in Europe").build());
+        inv.setItem(12, new ItemBuilder(Material.LAPIS_LAZULI).name("#00AAFFEurope").lore("&7Lower latency in Europe","&7Currently fewer players here.").build());
         inv.setItem(14, new ItemBuilder(Material.REDSTONE).name("#FF5555North-America").lore("&7Lower latency in NA").build());
-        inv.setItem(16, new ItemBuilder(Material.SAND).name("#FFAA00Middle East").lore("&7Lower latency in ME").build());
+        inv.setItem(16, new ItemBuilder(Material.SAND).name("#FFAA00Middle East").lore("&7Lower latency in Middle East","&7Currently fewer players here.").build());
         player.openInventory(inv);
     }
 

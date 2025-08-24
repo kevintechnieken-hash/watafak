@@ -61,9 +61,18 @@ public class KitManager {
         Inventory inv = Bukkit.createInventory(player, 27, ColorUtil.colorize("#FF5555Select Kit"));
         int slot = 10;
         for (Kit kit : idToKit.values()) {
+            java.util.List<String> lore = new java.util.ArrayList<>();
+            lore.add("&7Click to select");
+            if (!kit.getEffects().isEmpty()) lore.add("&7Effects:");
+            for (var e : kit.getEffects()) {
+                lore.add(" &f" + e.getType().getName().toLowerCase().replace('_',' ') + " " + (e.getAmplifier() + 1));
+            }
+            if (!kit.getItems().isEmpty()) lore.add("&7Items:");
+            for (var it : kit.getItems()) lore.add(" &fx" + it.getAmount() + " " + it.getType().name().toLowerCase());
+
             ItemBuilder builder = new ItemBuilder(kit.getIcon())
                     .name(kit.getDisplayName())
-                    .lore("&7Klik om te selecteren")
+                    .lore(lore.toArray(new String[0]))
                     .glow();
             inv.setItem(slot++, builder.build());
             if (slot % 9 == 8) slot += 2;
