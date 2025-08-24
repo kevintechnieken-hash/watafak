@@ -11,7 +11,11 @@ public class VoteCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        sender.sendMessage("Vote placeholder");
+        if (!(sender instanceof org.bukkit.entity.Player player)) {
+            sender.sendMessage("Players only");
+            return true;
+        }
+        plugin.getVoteManager().openVoteMenu(player);
         return true;
     }
 }

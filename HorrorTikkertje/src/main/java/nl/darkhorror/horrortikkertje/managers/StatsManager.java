@@ -55,5 +55,23 @@ public class StatsManager {
             plugin.getLogger().warning("incrementStat failed: " + e.getMessage());
         }
     }
+
+    public java.util.List<String> getLeaderboard(String column, int limit) {
+        java.util.List<String> result = new java.util.ArrayList<>();
+        String sql = "SELECT name, " + column + " FROM ht_players ORDER BY " + column + " DESC LIMIT ?";
+        try (Connection c = databaseManager.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setInt(1, limit);
+            try (ResultSet rs = ps.executeQuery()) {
+                int i = 1;
+                while (rs.next()) {
+                    result.add("#" + i++ + " " + rs.getString(1) + ": " + rs.getInt(2));
+                }
+            }
+        } catch (SQLException e) {
+            plugin.getLogger().warning("getLeaderboard failed: " + e.getMessage());
+        }
+        return result;
+    }
 }
 

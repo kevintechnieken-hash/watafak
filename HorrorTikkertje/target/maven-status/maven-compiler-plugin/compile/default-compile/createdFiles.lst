@@ -1,6 +1,7 @@
 nl/darkhorror/horrortikkertje/managers/VoteManager$Option.class
 nl/darkhorror/horrortikkertje/listeners/PlayerConnectionListener.class
 nl/darkhorror/horrortikkertje/commands/KitCommand.class
+nl/darkhorror/horrortikkertje/ui/TitleActionbarBossbar.class
 nl/darkhorror/horrortikkertje/model/Arena.class
 nl/darkhorror/horrortikkertje/managers/VoteManager.class
 nl/darkhorror/horrortikkertje/managers/ScoreboardManager.class
@@ -14,6 +15,7 @@ nl/darkhorror/horrortikkertje/HorrorTikkertjePlugin.class
 nl/darkhorror/horrortikkertje/listeners/GameProtectionListener.class
 nl/darkhorror/horrortikkertje/commands/ArenasCommand.class
 nl/darkhorror/horrortikkertje/commands/StatsCommand.class
+nl/darkhorror/horrortikkertje/managers/HorrorEventManager.class
 nl/darkhorror/horrortikkertje/commands/StartGameCommand.class
 nl/darkhorror/horrortikkertje/commands/AdminCommand.class
 nl/darkhorror/horrortikkertje/listeners/GameProtectionListener$1.class
@@ -22,7 +24,9 @@ nl/darkhorror/horrortikkertje/util/ColorUtil.class
 nl/darkhorror/horrortikkertje/commands/MonsterCommand.class
 nl/darkhorror/horrortikkertje/managers/MessageManager.class
 nl/darkhorror/horrortikkertje/managers/MonsterManager.class
+nl/darkhorror/horrortikkertje/managers/PowerUpManager.class
 nl/darkhorror/horrortikkertje/api/HorrorTikkertjeAPI.class
+nl/darkhorror/horrortikkertje/listeners/GameplayListener.class
 nl/darkhorror/horrortikkertje/util/ItemBuilder.class
 nl/darkhorror/horrortikkertje/commands/BroadcastCommand.class
 nl/darkhorror/horrortikkertje/util/BungeeUtil.class

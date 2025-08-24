@@ -7,7 +7,9 @@ import nl.darkhorror.horrortikkertje.listeners.GameProtectionListener;
 import nl.darkhorror.horrortikkertje.listeners.MenuListener;
 import nl.darkhorror.horrortikkertje.listeners.PlayerConnectionListener;
 import nl.darkhorror.horrortikkertje.managers.*;
+import nl.darkhorror.horrortikkertje.listeners.GameplayListener;
 import nl.darkhorror.horrortikkertje.util.ColorUtil;
+import nl.darkhorror.horrortikkertje.ui.TitleActionbarBossbar;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,6 +34,9 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
     private MonsterManager monsterManager;
     private NPCManager npcManager;
     private BroadcastManager broadcastManager;
+    private PowerUpManager powerUpManager;
+    private HorrorEventManager horrorEventManager;
+    private TitleActionbarBossbar tabUi;
 
     private HorrorTikkertjeAPI api;
 
@@ -58,6 +63,9 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
         this.monsterManager = new MonsterManager(this);
         this.npcManager = new NPCManager(this);
         this.broadcastManager = new BroadcastManager(this);
+        this.powerUpManager = new PowerUpManager(this);
+        this.horrorEventManager = new HorrorEventManager(this);
+        this.tabUi = new TitleActionbarBossbar();
 
         // Expose API
         this.api = new HorrorTikkertjeAPI(this);
@@ -66,6 +74,7 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerConnectionListener(this), this);
         Bukkit.getPluginManager().registerEvents(new GameProtectionListener(this), this);
         Bukkit.getPluginManager().registerEvents(new MenuListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new GameplayListener(this), this);
 
         // Register commands
         registerCommands();
@@ -78,6 +87,8 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
 
         // Start scoreboard updater
         this.scoreboardManager.startUpdaterTask();
+        this.powerUpManager.startSpawning();
+        this.horrorEventManager.start();
 
         getLogger().info(ColorUtil.stripHex("HorrorTikkertje enabled."));
     }
@@ -90,6 +101,8 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
         if (this.databaseManager != null) {
             this.databaseManager.shutdown();
         }
+        if (this.horrorEventManager != null) this.horrorEventManager.stop();
+        if (this.powerUpManager != null) this.powerUpManager.stopSpawning();
         getLogger().info(ColorUtil.stripHex("HorrorTikkertje disabled."));
     }
 
@@ -125,6 +138,9 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
     public MonsterManager getMonsterManager() { return monsterManager; }
     public NPCManager getNpcManager() { return npcManager; }
     public BroadcastManager getBroadcastManager() { return broadcastManager; }
+    public PowerUpManager getPowerUpManager() { return powerUpManager; }
+    public HorrorEventManager getHorrorEventManager() { return horrorEventManager; }
+    public TitleActionbarBossbar getTabUi() { return tabUi; }
     public HorrorTikkertjeAPI getApi() { return api; }
 }
 

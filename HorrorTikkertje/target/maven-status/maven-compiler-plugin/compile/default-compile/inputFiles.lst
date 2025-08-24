@@ -7,6 +7,7 @@
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/VoteCommand.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/NPCManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/MonsterManager.java
+/workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/PowerUpManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/StatsCommand.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/util/ItemBuilder.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/GameManager.java
@@ -23,13 +24,16 @@
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/LeaderboardCommand.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/GameInfoCommand.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/StartGameCommand.java
+/workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/listeners/GameplayListener.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/listeners/PlayerConnectionListener.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/KitManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/util/ColorUtil.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/MessageManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/ArenaManager.java
+/workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/ui/TitleActionbarBossbar.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/VoteManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/ScoreboardManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/HorrorTikkertjePlugin.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/SpawnNpcCommand.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/KitCommand.java
+/workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/HorrorEventManager.java

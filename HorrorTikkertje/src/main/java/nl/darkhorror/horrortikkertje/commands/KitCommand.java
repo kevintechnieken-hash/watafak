@@ -11,7 +11,11 @@ public class KitCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        sender.sendMessage("Kit command placeholder");
+        if (!(sender instanceof org.bukkit.entity.Player player)) {
+            sender.sendMessage("Players only");
+            return true;
+        }
+        plugin.getKitManager().openKitMenu(player);
         return true;
     }
 }

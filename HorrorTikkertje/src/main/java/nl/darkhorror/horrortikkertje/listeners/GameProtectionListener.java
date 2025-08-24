@@ -10,6 +10,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 
 /**
  * Protects lobby/voting from item drops and block changes.
@@ -51,6 +53,20 @@ public class GameProtectionListener implements Listener {
                     case CHEST -> plugin.getKitManager().openKitMenu(event.getPlayer());
                 }
             }
+        }
+    }
+
+    @EventHandler
+    public void onFood(FoodLevelChangeEvent event) {
+        GameManager.GameState state = plugin.getGameManager().getState();
+        if (state != GameManager.GameState.RUNNING) event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageEvent event) {
+        GameManager.GameState state = plugin.getGameManager().getState();
+        if (state == GameManager.GameState.LOBBY || state == GameManager.GameState.VOTING || state == GameManager.GameState.STARTING || state == GameManager.GameState.ENDING) {
+            event.setCancelled(true);
         }
     }
 }

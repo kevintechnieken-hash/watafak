@@ -21,6 +21,7 @@ public class GameManager {
     private final Set<Player> players = Collections.synchronizedSet(new HashSet<>());
     private BukkitTask gameTask;
     private int countdown;
+    private final java.util.Map<java.util.UUID, Integer> gameKills = new java.util.HashMap<>();
 
     public GameManager(HorrorTikkertjePlugin plugin) {
         this.plugin = plugin;
@@ -30,10 +31,12 @@ public class GameManager {
 
     public void addPlayer(Player player) {
         players.add(player);
+        gameKills.putIfAbsent(player.getUniqueId(), 0);
     }
 
     public void removePlayer(Player player) {
         players.remove(player);
+        gameKills.remove(player.getUniqueId());
     }
 
     public Set<Player> getPlayers() { return players; }
@@ -78,6 +81,7 @@ public class GameManager {
         for (Player p : players) {
             if (arena.getWorld() != null) p.teleport(arena.getPlayerSpawn());
             plugin.getKitManager().applySelectedKit(p);
+            gameKills.put(p.getUniqueId(), 0);
         }
         plugin.getMonsterManager().startForArena(arena,
                 plugin.getVoteManager().isEnabled(VoteManager.Option.MONSTER_ENABLED));
@@ -99,6 +103,18 @@ public class GameManager {
                 if (countdown == 30 || countdown == 15 || countdown <= 10) {
                     broadcast("Countdown: " + countdown + "s");
                 }
+                // Update bossbar progress
+                double total = switch (state) {
+                    case VOTING -> plugin.getConfig().getInt("timers.vote", 30);
+                    case STARTING -> plugin.getConfig().getInt("timers.prestart", 15);
+                    case RUNNING -> plugin.getConfig().getInt("timers.game", 300);
+                    case ENDING -> plugin.getConfig().getInt("timers.end", 10);
+                    default -> 1;
+                };
+                double progress = Math.max(0, Math.min(1, countdown / total));
+                for (Player p : players) {
+                    plugin.getTabUi().setBossbar(p, state + " " + countdown + "s", progress);
+                }
                 countdown--;
             }
         }, 0L, 20L);
@@ -108,6 +124,22 @@ public class GameManager {
         for (Player p : players) {
             p.sendMessage(message);
         }
+    }
+
+    public int getCountdown() { return countdown; }
+
+    public void recordKill(java.util.UUID killer) {
+        gameKills.merge(killer, 1, Integer::sum);
+    }
+
+    public Player getTopKiller() {
+        Player bestPlayer = null;
+        int best = -1;
+        for (Player p : players) {
+            int k = gameKills.getOrDefault(p.getUniqueId(), 0);
+            if (k > best) { best = k; bestPlayer = p; }
+        }
+        return bestPlayer;
     }
 }
 
