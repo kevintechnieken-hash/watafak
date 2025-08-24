@@ -87,6 +87,11 @@ public class MenuListener implements Listener {
             player.sendMessage(ColorUtil.colorize("#55FF55Arena gezet: &f" + arena.getId()));
             player.closeInventory();
         }
+
+        if (title.contains("Region Selector")) {
+            event.setCancelled(true);
+            plugin.getRegionManager().handleRegionClick(player, current);
+        }
     }
 }
 

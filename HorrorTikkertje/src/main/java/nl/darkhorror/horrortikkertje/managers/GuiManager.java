@@ -25,6 +25,9 @@ public class GuiManager {
         int pageSize = 45; // 5 rows for entries, last row for controls
         List<StatsManager.Record> records = plugin.getStatsManager().getLeaderboardPage(column, page, pageSize);
         Inventory inv = Bukkit.createInventory(player, 54, ColorUtil.colorize("#FFAA00Leaderboards: " + column + " #" + page));
+        // Decorative border
+        ItemStack glass = new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).name(" ").build();
+        for (int s = 45; s < 54; s++) inv.setItem(s, glass);
         int i = 0; int rank = (page - 1) * pageSize + 1;
         for (StatsManager.Record r : records) {
             if (i >= pageSize) break;

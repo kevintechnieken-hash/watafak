@@ -8,6 +8,7 @@ nl/darkhorror/horrortikkertje/managers/GameManager.class
 nl/darkhorror/horrortikkertje/HorrorTikkertjePlugin.class
 nl/darkhorror/horrortikkertje/commands/ArenasCommand.class
 nl/darkhorror/horrortikkertje/managers/HorrorEventManager.class
+nl/darkhorror/horrortikkertje/managers/RegionManager.class
 nl/darkhorror/horrortikkertje/commands/AdminCommand.class
 nl/darkhorror/horrortikkertje/managers/GameManager$GameState.class
 nl/darkhorror/horrortikkertje/util/ColorUtil.class
@@ -32,6 +33,7 @@ nl/darkhorror/horrortikkertje/model/Arena.class
 nl/darkhorror/horrortikkertje/managers/ScoreboardManager.class
 nl/darkhorror/horrortikkertje/managers/KitManager.class
 nl/darkhorror/horrortikkertje/commands/EndGameCommand.class
+nl/darkhorror/horrortikkertje/managers/RegionManager$Region.class
 nl/darkhorror/horrortikkertje/database/DatabaseManager.class
 nl/darkhorror/horrortikkertje/listeners/GameProtectionListener.class
 nl/darkhorror/horrortikkertje/managers/ArenaShiftManager.class

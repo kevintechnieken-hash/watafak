@@ -39,6 +39,7 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
     private TitleActionbarBossbar tabUi;
     private GuiManager guiManager;
     private ArenaShiftManager arenaShiftManager;
+    private RegionManager regionManager;
 
     private HorrorTikkertjeAPI api;
 
@@ -70,6 +71,7 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
         this.tabUi = new TitleActionbarBossbar();
         this.guiManager = new GuiManager(this);
         this.arenaShiftManager = new ArenaShiftManager(this);
+        this.regionManager = new RegionManager(this);
 
         // Expose API
         this.api = new HorrorTikkertjeAPI(this);
@@ -148,6 +150,7 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
     public HorrorEventManager getHorrorEventManager() { return horrorEventManager; }
     public TitleActionbarBossbar getTabUi() { return tabUi; }
     public GuiManager getGuiManager() { return guiManager; }
+    public RegionManager getRegionManager() { return regionManager; }
     public HorrorTikkertjeAPI getApi() { return api; }
 }
 

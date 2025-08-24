@@ -51,6 +51,7 @@ public class GameProtectionListener implements Listener {
                 switch (event.getItem().getType()) {
                     case BOOK -> plugin.getVoteManager().openVoteMenu(event.getPlayer());
                     case CHEST -> plugin.getKitManager().openKitMenu(event.getPlayer());
+                    case COMPASS -> plugin.getRegionManager().openRegionMenu(event.getPlayer());
                 }
             }
         }

@@ -48,7 +48,7 @@ public class ScoreboardManager {
             obj = board.registerNewObjective("ht", "dummy", "Horror Tikkertje");
             obj.setDisplaySlot(DisplaySlot.SIDEBAR);
         }
-        obj.setDisplayName("Horror Tikkertje");
+        obj.setDisplayName("§c§lHAUNT & HUNT");
 
         // Clear existing scores by creating new entries with unique lines
         for (String entry : board.getEntries()) {
@@ -56,11 +56,11 @@ public class ScoreboardManager {
         }
 
         int line = 10;
-        line = setLine(obj, line, "State: " + plugin.getGameManager().getState());
-        line = setLine(obj, line, "Players: " + plugin.getGameManager().getPlayers().size());
-        line = setLine(obj, line, "Time: " + plugin.getGameManager().getCountdown() + "s");
-        line = setLine(obj, line, "Monster: " + (plugin.getVoteManager().isEnabled(VoteManager.Option.MONSTER_ENABLED) ? "ON" : "OFF"));
-        setLine(obj, line, "Cursed: " + (plugin.getVoteManager().isEnabled(VoteManager.Option.CURSED_ARENA) ? "ON" : "OFF"));
+        line = setLine(obj, line, "§7State: §f" + plugin.getGameManager().getState());
+        line = setLine(obj, line, "§7Players: §f" + plugin.getGameManager().getPlayers().size());
+        line = setLine(obj, line, "§7Time: §f" + plugin.getGameManager().getCountdown() + "s");
+        line = setLine(obj, line, "§7Monster: §f" + (plugin.getVoteManager().isEnabled(VoteManager.Option.MONSTER_ENABLED) ? "§aON" : "§cOFF"));
+        setLine(obj, line, "§7Cursed: §f" + (plugin.getVoteManager().isEnabled(VoteManager.Option.CURSED_ARENA) ? "§aON" : "§cOFF"));
     }
 
     private int setLine(Objective obj, int line, String text) {

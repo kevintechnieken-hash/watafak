@@ -12,8 +12,9 @@ public class GameInfoCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        sender.sendMessage("State: " + plugin.getGameManager().getState());
-        sender.sendMessage("Players: " + plugin.getGameManager().getPlayers().size());
+        sender.sendMessage("§c§lHAUNT & HUNT §7info:");
+        sender.sendMessage("§7State: §f" + plugin.getGameManager().getState());
+        sender.sendMessage("§7Players: §f" + plugin.getGameManager().getPlayers().size());
         return true;
     }
 }

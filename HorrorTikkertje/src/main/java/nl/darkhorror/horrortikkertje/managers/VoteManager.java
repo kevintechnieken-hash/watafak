@@ -26,8 +26,14 @@ public class VoteManager {
 
     public void openVoteMenu(Player player) {
         Inventory inv = Bukkit.createInventory(player, 27, ColorUtil.colorize("#00AAAAVoting"));
-        inv.setItem(11, new ItemBuilder(Material.ZOMBIE_HEAD).name("#FF4444Monster Enabled").lore("&7Stem om het monster te activeren").build());
-        inv.setItem(15, new ItemBuilder(Material.NETHER_STAR).name("#AA00FFCursed Arena Mode").lore("&7Random arena effecten").build());
+        inv.setItem(11, new ItemBuilder(Material.ZOMBIE_HEAD)
+                .name("#FF4444Monster Enabled")
+                .lore("&7Enable the AI hunter in the arena.", "&7More danger, more thrill.")
+                .build());
+        inv.setItem(15, new ItemBuilder(Material.NETHER_STAR)
+                .name("#AA00FFCursed Arena Mode")
+                .lore("&7Random arena mutations.", "&7Fog, traps, shifting walls.")
+                .build());
         player.openInventory(inv);
     }
 
@@ -36,7 +42,14 @@ public class VoteManager {
         UUID id = player.getUniqueId();
         if (set.contains(id)) set.remove(id); else set.add(id);
         int count = set.size();
-        player.sendMessage(ColorUtil.colorize("#FFFF55Je stem voor &f" + option + " &7is nu " + (set.contains(id) ? "&aAAN" : "&cUIT") + " &7(" + count + " stemmen)"));
+        int max = Bukkit.getOnlinePlayers().size();
+        String optName = option == Option.MONSTER_ENABLED ? "Monster Enabled" : "Cursed Arena";
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.sendMessage(ColorUtil.colorize(
+                    plugin.getMessageManager().format("vote-cast",
+                            java.util.Map.of("player", player.getName(), "option", optName, "count", String.valueOf(count), "max", String.valueOf(max))
+                    )));
+        }
     }
 
     public boolean isEnabled(Option option) {

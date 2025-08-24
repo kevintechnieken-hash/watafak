@@ -21,6 +21,7 @@
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/GuiManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/AdminCommand.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/model/Kit.java
+/workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/RegionManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/listeners/GameProtectionListener.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/LeaderboardCommand.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/GameInfoCommand.java

@@ -14,4 +14,38 @@ kits:
       - INVISIBILITY:1
     items:
       - "ENDER_PEARL:1"
+  berserker:
+    display: "#FF4444Berserker"
+    icon: IRON_SWORD
+    effects:
+      - STRENGTH:1
+      - SPEED:1
+    items:
+      - "IRON_SWORD:1"
+      - "STEAK:4"
+  sentinel:
+    display: "#44AAFFSentinel"
+    icon: SHIELD
+    effects:
+      - RESISTANCE:1
+    items:
+      - "SHIELD:1"
+      - "GOLDEN_APPLE:1"
+  assassin:
+    display: "#AA00FFAssassin"
+    icon: STONE_SWORD
+    effects:
+      - INVISIBILITY:1
+      - SPEED:2
+    items:
+      - "STONE_SWORD:1"
+      - "SNOWBALL:8"
+  acrobat:
+    display: "#FFFF55Acrobat"
+    icon: RABBIT_FOOT
+    effects:
+      - JUMP:2
+      - SPEED:1
+    items:
+      - "RABBIT_FOOT:1"
 

@@ -67,6 +67,12 @@ public class GameManager {
     private void startPreStart(Arena arena) {
         state = GameState.STARTING;
         broadcast("Pre-start countdown.");
+        // Remove lobby items to prevent retaining kit/vote
+        for (Player p : players) {
+            p.getInventory().remove(org.bukkit.Material.BOOK);
+            p.getInventory().remove(org.bukkit.Material.CHEST);
+            p.getInventory().remove(org.bukkit.Material.COMPASS);
+        }
         // Spawn monster early if enabled
         if (plugin.getVoteManager().isEnabled(VoteManager.Option.MONSTER_ENABLED)) {
             plugin.getMonsterManager().spawnPreGame(arena);
