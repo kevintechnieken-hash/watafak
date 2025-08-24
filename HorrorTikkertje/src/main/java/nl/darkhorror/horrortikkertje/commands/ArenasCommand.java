@@ -24,17 +24,17 @@ public class ArenasCommand implements CommandExecutor {
                 for (Arena a : plugin.getArenaManager().getArenas()) sender.sendMessage("- " + a.getId() + " (" + a.getDisplayName() + ")");
             }
             case "set" -> {
-                if (args.length < 2) { sender.sendMessage("Gebruik: /arenas set <id>"); return true; }
+                if (args.length < 2) { sender.sendMessage("Usage: /arenas set <id>"); return true; }
                 Arena arena = plugin.getArenaManager().getArena(args[1]);
-                if (arena == null) { sender.sendMessage("Arena niet gevonden."); return true; }
+                if (arena == null) { sender.sendMessage("Arena not found."); return true; }
                 plugin.getArenaManager().setCurrentArena(arena);
-                sender.sendMessage("Arena gezet: " + arena.getId());
+                sender.sendMessage("Arena set: " + arena.getId());
             }
             case "reload" -> {
                 plugin.getArenaManager().reload();
-                sender.sendMessage("Arenas herladen.");
+                sender.sendMessage("Arenas reloaded.");
             }
-            default -> sender.sendMessage("Onbekende subcommand.");
+            default -> sender.sendMessage("Unknown subcommand.");
         }
         return true;
     }

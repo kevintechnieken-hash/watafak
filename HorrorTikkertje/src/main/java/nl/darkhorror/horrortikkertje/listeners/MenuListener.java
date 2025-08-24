@@ -81,10 +81,10 @@ public class MenuListener implements Listener {
             String id = current.hasItemMeta() && current.getItemMeta().hasDisplayName() ? current.getItemMeta().getDisplayName() : null;
             if (id == null) return;
             var arena = plugin.getArenaManager().getArena(ColorUtil.stripHex(id));
-            if (arena == null) { player.sendMessage(ColorUtil.colorize("#FF5555Arena niet gevonden")); return; }
-            if (!player.hasPermission("horrortikkertje.admin")) { player.sendMessage("Geen permissie."); return; }
+            if (arena == null) { player.sendMessage(ColorUtil.colorize("#FF5555Arena not found")); return; }
+            if (!player.hasPermission("horrortikkertje.admin")) { player.sendMessage("No permission."); return; }
             plugin.getArenaManager().setCurrentArena(arena);
-            player.sendMessage(ColorUtil.colorize("#55FF55Arena gezet: &f" + arena.getId()));
+            player.sendMessage(ColorUtil.colorize("#55FF55Arena set: &f" + arena.getId()));
             player.closeInventory();
         }
 

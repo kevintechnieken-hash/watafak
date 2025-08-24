@@ -20,25 +20,25 @@ public class MonsterCommand implements CommandExecutor {
             case "spawn" -> {
                 var arena = plugin.getArenaManager().getCurrentArena();
                 plugin.getMonsterManager().spawnPreGame(arena);
-                sender.sendMessage("Monster gespawned.");
+                sender.sendMessage("Monster spawned.");
             }
             case "remove" -> {
                 plugin.getMonsterManager().removeMonster();
-                sender.sendMessage("Monster verwijderd.");
+                sender.sendMessage("Monster removed.");
             }
             case "speed" -> {
-                if (args.length < 2) { sender.sendMessage("Gebruik: /monster speed <value>"); return true; }
+                if (args.length < 2) { sender.sendMessage("Usage: /monster speed <value>"); return true; }
                 double v = Double.parseDouble(args[1]);
                 plugin.getMonsterManager().setSpeed(v);
-                sender.sendMessage("Monster speed gezet op " + v);
+                sender.sendMessage("Monster speed set to " + v);
             }
             case "health" -> {
-                if (args.length < 2) { sender.sendMessage("Gebruik: /monster health <value>"); return true; }
+                if (args.length < 2) { sender.sendMessage("Usage: /monster health <value>"); return true; }
                 double v = Double.parseDouble(args[1]);
                 plugin.getMonsterManager().setMaxHealth(v);
-                sender.sendMessage("Monster HP gezet op " + v);
+                sender.sendMessage("Monster HP set to " + v);
             }
-            default -> sender.sendMessage("Onbekende subcommand.");
+            default -> sender.sendMessage("Unknown subcommand.");
         }
         return true;
     }

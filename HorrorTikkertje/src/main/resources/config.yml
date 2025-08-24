@@ -1,6 +1,8 @@
 # General settings
 max-players: 12
 lobby-world: world
+server:
+  ip: play.hauntandhunt.net
 
 # MySQL credentials
 mysql:

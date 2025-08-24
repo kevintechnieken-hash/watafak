@@ -35,6 +35,7 @@
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/ArenaManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/ui/TitleActionbarBossbar.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/VoteManager.java
+/workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/RegionCommand.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/managers/ScoreboardManager.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/HorrorTikkertjePlugin.java
 /workspace/HorrorTikkertje/src/main/java/nl/darkhorror/horrortikkertje/commands/SpawnNpcCommand.java

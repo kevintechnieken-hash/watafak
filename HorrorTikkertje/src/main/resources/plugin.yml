@@ -40,6 +40,8 @@ commands:
   gameconfig:
     description: Reload configs
     permission: horrortikkertje.admin.reload
+  region:
+    description: Open region selector
 
 permissions:
   horrortikkertje.admin:

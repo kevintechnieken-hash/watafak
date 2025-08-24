@@ -55,12 +55,22 @@ public class ScoreboardManager {
             board.resetScores(entry);
         }
 
-        int line = 10;
+        String ip = plugin.getConfig().getString("server.ip", "play.example.net");
+        String arenaName = plugin.getArenaManager().getCurrentArena() != null ? plugin.getArenaManager().getCurrentArena().getDisplayName() : "N/A";
+        String region = plugin.getRegionManager().toDisplay(plugin.getRegionManager().getCurrentRegion());
+
+        int line = 14;
+        line = setLine(obj, line, "§8────────────");
         line = setLine(obj, line, "§7State: §f" + plugin.getGameManager().getState());
         line = setLine(obj, line, "§7Players: §f" + plugin.getGameManager().getPlayers().size());
+        line = setLine(obj, line, "§7Arena: §f" + arenaName);
+        line = setLine(obj, line, "§7Region: §f" + region);
         line = setLine(obj, line, "§7Time: §f" + plugin.getGameManager().getCountdown() + "s");
-        line = setLine(obj, line, "§7Monster: §f" + (plugin.getVoteManager().isEnabled(VoteManager.Option.MONSTER_ENABLED) ? "§aON" : "§cOFF"));
-        setLine(obj, line, "§7Cursed: §f" + (plugin.getVoteManager().isEnabled(VoteManager.Option.CURSED_ARENA) ? "§aON" : "§cOFF"));
+        line = setLine(obj, line, "§7Monster: " + (plugin.getVoteManager().isEnabled(VoteManager.Option.MONSTER_ENABLED) ? "§aON" : "§cOFF"));
+        line = setLine(obj, line, "§7Cursed: " + (plugin.getVoteManager().isEnabled(VoteManager.Option.CURSED_ARENA) ? "§aON" : "§cOFF"));
+        line = setLine(obj, line, " ");
+        line = setLine(obj, line, "§7IP: §f" + ip);
+        setLine(obj, line, "§8────────────");
     }
 
     private int setLine(Objective obj, int line, String text) {

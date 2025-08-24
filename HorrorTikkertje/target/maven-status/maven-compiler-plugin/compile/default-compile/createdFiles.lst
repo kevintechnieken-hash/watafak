@@ -28,6 +28,7 @@ nl/darkhorror/horrortikkertje/commands/LeaderboardCommand.class
 nl/darkhorror/horrortikkertje/commands/GameConfigCommand.class
 nl/darkhorror/horrortikkertje/managers/GuiManager.class
 nl/darkhorror/horrortikkertje/commands/SpawnNpcCommand.class
+nl/darkhorror/horrortikkertje/commands/RegionCommand.class
 nl/darkhorror/horrortikkertje/ui/TitleActionbarBossbar.class
 nl/darkhorror/horrortikkertje/model/Arena.class
 nl/darkhorror/horrortikkertje/managers/ScoreboardManager.class

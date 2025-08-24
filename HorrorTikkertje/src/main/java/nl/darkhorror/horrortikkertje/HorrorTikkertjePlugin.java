@@ -128,6 +128,7 @@ public final class HorrorTikkertjePlugin extends JavaPlugin {
         getCommand("monster").setExecutor(new MonsterCommand(this));
         getCommand("spawnnpc").setExecutor(new SpawnNpcCommand(this));
         getCommand("gameconfig").setExecutor(new GameConfigCommand(this));
+        getCommand("region").setExecutor(new RegionCommand(this));
     }
 
     public static HorrorTikkertjePlugin getInstance() {
