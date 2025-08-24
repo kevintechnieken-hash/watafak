@@ -16,7 +16,7 @@ public class BroadcastCommand implements CommandExecutor {
             return true;
         }
         String msg = String.join(" ", args);
-        plugin.getBroadcastManager().broadcast(msg);
+        plugin.getBroadcastManager().broadcast("&a[Broadcast] &f" + msg);
         return true;
     }
 }

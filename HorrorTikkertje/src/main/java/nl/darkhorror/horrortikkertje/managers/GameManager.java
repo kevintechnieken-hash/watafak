@@ -119,7 +119,14 @@ public class GameManager {
                 };
                 double progress = Math.max(0, Math.min(1, countdown / total));
                 for (Player p : players) {
-                    plugin.getTabUi().setBossbar(p, state + " " + countdown + "s", progress);
+                    org.bukkit.boss.BarColor color = switch (state) {
+                        case VOTING -> org.bukkit.boss.BarColor.BLUE;
+                        case STARTING -> org.bukkit.boss.BarColor.YELLOW;
+                        case RUNNING -> org.bukkit.boss.BarColor.GREEN;
+                        case ENDING -> org.bukkit.boss.BarColor.RED;
+                        default -> org.bukkit.boss.BarColor.WHITE;
+                    };
+                    plugin.getTabUi().setBossbar(p, state + " " + countdown + "s", progress, color);
                 }
                 countdown--;
             }

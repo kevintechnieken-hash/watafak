@@ -34,6 +34,15 @@ public class TitleActionbarBossbar {
         bar.setVisible(true);
     }
 
+    public void setBossbar(Player player, String text, double progress, BarColor color) {
+        BossBar bar = playerBars.computeIfAbsent(player.getUniqueId(), id -> Bukkit.createBossBar("", color, BarStyle.SOLID));
+        bar.setColor(color);
+        bar.setProgress(Math.max(0, Math.min(1, progress)));
+        bar.setTitle(ColorUtil.colorize(text));
+        if (!bar.getPlayers().contains(player)) bar.addPlayer(player);
+        bar.setVisible(true);
+    }
+
     public void clearBossbar(Player player) {
         BossBar bar = playerBars.remove(player.getUniqueId());
         if (bar != null) {

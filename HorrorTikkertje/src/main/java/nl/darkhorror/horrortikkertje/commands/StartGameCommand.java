@@ -12,7 +12,7 @@ public class StartGameCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         plugin.getGameManager().startGame();
-        sender.sendMessage("Starting game...");
+        sender.sendMessage("§aStarting game...");
         return true;
     }
 }

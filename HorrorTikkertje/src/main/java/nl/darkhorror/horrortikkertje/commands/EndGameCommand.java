@@ -12,7 +12,7 @@ public class EndGameCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         plugin.getGameManager().endGame();
-        sender.sendMessage("Ending game...");
+        sender.sendMessage("§cEnding game...");
         return true;
     }
 }

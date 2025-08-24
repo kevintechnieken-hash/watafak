@@ -1,12 +1,14 @@
 package nl.darkhorror.horrortikkertje.listeners;
 
 import nl.darkhorror.horrortikkertje.HorrorTikkertjePlugin;
+import org.bukkit.Bukkit;
 import nl.darkhorror.horrortikkertje.managers.GameManager;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 
 /**
@@ -36,6 +38,16 @@ public class GameplayListener implements Listener {
         if (plugin.getPowerUpManager().tryConsume(player, item)) {
             event.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public void onDeath(PlayerDeathEvent event) {
+        Player player = event.getEntity();
+        if (plugin.getGameManager().getState() != GameManager.GameState.RUNNING) return;
+        Bukkit.getScheduler().runTask(plugin, () -> {
+            player.setGameMode(org.bukkit.GameMode.SPECTATOR);
+            plugin.getTabUi().sendActionbar(player, "&7You are eliminated. Use &a/leave &7or &a/hub &7to return.");
+        });
     }
 }
 
